@@ -1,11 +1,14 @@
 [project]
-name = "pylrproxy"
+name = "pysmproxy"
 version = "0.1.0"
-description = "Add your description here"
+description = "A proxy for homelab status monitors"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "aiohttp>=3.13.2",
     "fastapi[standard]>=0.121.2",
+    "httpx>=0.28.1",
+    "pydantic-settings>=2.12.0",
     "pylitterbot>=2025.0.0",
 ]
 
@@ -16,6 +19,20 @@ venv = ".venv"
 [flake8]
 max-line-length = 120
 
+[dependency-groups]
+dev = [
+    "assertpy>=1.1",
+    "ipython>=9.7.0",
+    "pytest>=9.0.1",
+    "pytest-cov>=7.0.0",
+    "responses>=0.25.8",
+    "respx>=0.22.0",
+]
+
 [tool.ruff]
 line-length = 120
 
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]

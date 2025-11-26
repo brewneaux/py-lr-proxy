@@ -11,4 +11,4 @@ RUN uv sync --frozen --no-cache
 
 
 # Run the application.
-CMD ["/app/.venv/bin/fastapi", "run", "app/main.py", "--port", "8080"] 
+CMD ["/app/.venv/bin/fastapi", "run", "src/app/main.py", "--port", "8080"] 
