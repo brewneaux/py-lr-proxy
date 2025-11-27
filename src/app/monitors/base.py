@@ -9,11 +9,15 @@ MONITOR_BAD = "bad"
 
 @dataclass
 class MonitorStatus:
+    """A DTO for holding MonitorStatuses and serializing them.
+    """
     name: str
     status: str
 
 
 class BaseMonitor(ABC):
+    """The base that all monitors should extend from.
+    """
     @property
     @abstractmethod
     def monitor_name(self) -> str:

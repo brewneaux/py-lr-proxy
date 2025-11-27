@@ -46,10 +46,10 @@ def list_monitors():
     return [x().monitor_name for x in MONITORS]
 
 @app.get("/monitor/{monitor_name}")
-def get_single_monitor(monitor_name: str):
+async def get_single_monitor(monitor_name: str):
     from app.monitors import MONITORS
-    matching_monitors = [x().monitor_name for x in MONITORS if x().monitor_name == monitor_name]
+    matching_monitors = [x for x in MONITORS if x().monitor_name.lower() == monitor_name.lower()]
     if not matching_monitors:
         raise HTTPException(status_code=400, detail="Monitor not found")
-    m = matching_monitors[0]
-    return m().get_status()
+    m = matching_monitors[0]()
+    return await m.get_monitor_result()

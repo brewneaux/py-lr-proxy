@@ -9,10 +9,16 @@ from .doorbell import Doorbell
 
 __all__ = ["HomeAssistant", "JulepFeeder", "BlindBatteries", "Internet", "Scrypted", "Doorbell"]
 
+
 MONITORS = [HomeAssistant, JulepFeeder, BlindBatteries, Internet, Scrypted, Doorbell]
 
 
 async def get_all_monitors():
+    """Get all of the monitor status asyncronously.
+
+    Returns:
+        List[MonitorStatus]: A list of all registered monitor's statuses
+    """
     monitor_results = await asyncio.gather(*[m().get_monitor_result() for m in MONITORS])
     print(monitor_results)
     return monitor_results

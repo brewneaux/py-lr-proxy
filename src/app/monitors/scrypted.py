@@ -21,5 +21,5 @@ class Scrypted(BaseMonitor):
                 return MONITOR_GOOD
             return MONITOR_BAD
         except httpx.HTTPError as e:
-            getLogger(__name__).warning(f"Received bad response from {url}", exc_info=e)
+            getLogger(__name__).warning(f"Received bad response from {self._url}", exc_info=e)
             return MONITOR_BAD
